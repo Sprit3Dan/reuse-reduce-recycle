@@ -1,0 +1,23 @@
+{
+  "name": "reuse-reduce-recycle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sprit3Dan/reuse-reduce-recycle.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sprit3Dan/reuse-reduce-recycle/issues"
+  },
+  "homepage": "https://github.com/Sprit3Dan/reuse-reduce-recycle#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.3",
+    "express": "^4.17.1"
+  }
+}
