@@ -27,6 +27,7 @@ function handleGETRequest(req, res) {
 	const token = req.query['hub.verify_token'];
 	const challenge = req.query['hub.challenge'];
 	
+	// TODO: Consider changing to @google-cloud/secrets if necessary
 	if (hubMode === 'subscribe' && token === process.env.VERIFY_TOKEN) {
 		res.status(200).send(challenge);
 	} else {
