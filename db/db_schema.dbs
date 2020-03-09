@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="reuse-reduce-recycle" id="Project_553a2f7" template="Default" database="PostgreSQL" >
+	<schema name="reuse-reduce-recycle" schemaname="reuse-reduce-recycle" >
+		<table name="decisions" >
+			<column name="decision_type" type="varchar" jt="12" />
+			<column name="decision_id" type="uuid" jt="1111" mandatory="y" />
+			<column name="decision_description" type="text" jt="12" />
+			<index name="pk_decisions_decision_id" unique="PRIMARY_KEY" >
+				<column name="decision_id" />
+			</index>
+		</table>
+		<table name="groups" >
+			<column name="group_id" type="uuid" jt="1111" mandatory="y" />
+			<column name="group_name" type="varchar" length="100" jt="12" />
+			<index name="pk_groups_group_id" unique="PRIMARY_KEY" >
+				<column name="group_id" />
+			</index>
+		</table>
+		<table name="groups_items" >
+			<column name="group_id" type="uuid" jt="1111" />
+			<column name="item_id" type="uuid" jt="1111" />
+			<fk name="fk_groups_items_groups" to_schema="reuse-reduce-recycle" to_table="groups" >
+				<fk_column name="group_id" pk="group_id" />
+			</fk>
+			<fk name="fk_groups_items_keys" to_schema="reuse-reduce-recycle" to_table="items" >
+				<fk_column name="item_id" pk="item_id" />
+			</fk>
+		</table>
+		<table name="groups_rules" >
+			<column name="group_id" type="uuid" jt="1111" />
+			<column name="rule_id" type="uuid" jt="1111" />
+			<fk name="fk_groups_rules_groups" to_schema="reuse-reduce-recycle" to_table="groups" >
+				<fk_column name="group_id" pk="group_id" />
+			</fk>
+			<fk name="fk_groups_rules_rules" to_schema="reuse-reduce-recycle" to_table="rules" >
+				<fk_column name="rule_id" pk="rule_id" />
+			</fk>
+		</table>
+		<table name="item_rules" >
+			<column name="item_id" type="uuid" jt="1111" />
+			<column name="rule_id" type="uuid" jt="1111" />
+			<fk name="fk_item_rules_items" to_schema="reuse-reduce-recycle" to_table="items" >
+				<fk_column name="item_id" pk="item_id" />
+			</fk>
+			<fk name="fk_item_rules_rules" to_schema="reuse-reduce-recycle" to_table="rules" >
+				<fk_column name="rule_id" pk="rule_id" />
+			</fk>
+		</table>
+		<table name="items" >
+			<column name="item_id" type="uuid" jt="1111" mandatory="y" />
+			<index name="pk_keys_keyid" unique="PRIMARY_KEY" >
+				<column name="item_id" />
+			</index>
+		</table>
+		<table name="items_decisions" >
+			<column name="item_id" type="uuid" jt="1111" />
+			<column name="decision_id" type="uuid" jt="1111" />
+			<fk name="fk_items_decisions_items" to_schema="reuse-reduce-recycle" to_table="items" >
+				<fk_column name="item_id" pk="item_id" />
+			</fk>
+			<fk name="fk_items_decisions_decisions" to_schema="reuse-reduce-recycle" to_table="decisions" >
+				<fk_column name="decision_id" pk="decision_id" />
+			</fk>
+		</table>
+		<table name="rules" >
+			<column name="rule_id" type="uuid" jt="1111" mandatory="y" />
+			<column name="rule_description" type="text" jt="12" />
+			<index name="pk_rules_rule_id" unique="PRIMARY_KEY" >
+				<column name="rule_id" />
+			</index>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout_14e0e12" show_relation="columns" >
+		<entity schema="reuse-reduce-recycle" name="groups_items" color="C1D8EE" x="384" y="336" />
+		<entity schema="reuse-reduce-recycle" name="items" color="C1D8EE" x="640" y="512" />
+		<entity schema="reuse-reduce-recycle" name="item_rules" color="C1D8EE" x="432" y="560" />
+		<entity schema="reuse-reduce-recycle" name="groups_rules" color="C1D8EE" x="176" y="448" />
+		<entity schema="reuse-reduce-recycle" name="groups" color="C1D8EE" x="176" y="272" />
+		<entity schema="reuse-reduce-recycle" name="decisions" color="C1D8EE" x="512" y="208" />
+		<entity schema="reuse-reduce-recycle" name="items_decisions" color="C1D8EE" x="608" y="368" />
+		<entity schema="reuse-reduce-recycle" name="rules" color="C1D8EE" x="176" y="624" />
+		<callout x="48" y="48" pointer="NO" >
+			<comment><![CDATA[This project is in offline mode.
+Design the schema and save the design to project file. Later create or upgrade the schema on any database.
+Right-click the layout to add new tables. Drop this callout from its right-click pop-up menu.]]></comment>
+		</callout>
+	</layout>
+</project>
